@@ -1,0 +1,67 @@
+DESCRIPTION
+------------
+
+	Experiments with doing OOP in pure C. The library is a proof of concept 
+code inspired by the book Object Oriented Programming in ANSI-C by 
+Schreiner A. The implementation supports basic exception handling and printing
+stacktrace. It doesn't protect internal structures yet so it's not tread safe, but 
+proper locking can be easiliy implemented.
+
+GOALS
+-------
+
+OOP - achived
+Exception handling via THROW - achived
+Printing stacktrace - achived
+Dynamic tracing - not finished
+
+CONVENTIONS
+-------------
+
+MACROS - All leters are capital.
+structures - Has suffix _s.
+types - Has suffix _t.
+objects - Has suffix _o.
+definitions - Has suffix _d.
+structure representing object - Has suffix _osd.
+enumerations - Have _e suffix.
+enumeration elements - Have suffix _EE, and prefix equals to file name.
+object definition in fact properties field of object as a object_osd structure -
+	   Has suffix _od.
+
+Global data - Has suffix _g.
+Constructors for objects - Has names suffixes _ctor.
+Destructors for objects - Has suffix _dtor.
+Selectors for different methods of objects - Has suffix _stor.
+
+Variables - starts from capital letter.
+
+EXAMPLE
+---------
+
+// MAIN function should be replaced with main_int
+int main_int(int argc, char * argv[], exception_stack_osa * Stack) {
+    int res;
+    TRY{
+	  res = helper(6, 2, Stack);
+	  DEBUG(HEAVY, "res: %i",	main_int, res);	// This branch will get control
+	} CATCH (e_DivisionOnZero_g) {
+	  THROW(e_DivisionOnZero_g); 
+	} ENDTRY;
+
+	TRY{
+    res = divide(6, 0, Stack);
+	  DEBUG(HEAVY, "res: %i",	main_int, res);
+	} CATCH (e_DivisionOnZero_g) {
+	  DEBUG(HEAVY, "EXCEPTION",	main_int);	// This branch will get control
+	  THROW(e_DivisionOnZero_g); 
+	} ENDTRY;
+  return 0;
+}
+
+TODO
+-----
+
+1. Update build system to be able to build static and dynamic library library. 
+2. Implement proper locking.
+
