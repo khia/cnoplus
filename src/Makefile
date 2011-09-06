@@ -56,9 +56,12 @@ INSTALL_DIR = mkdir -p
 #show: 
 #	echo NOLINK_DIST_OBJ_FILES = $(NOLINK_DIST_OBJ_FILES) : $(NOLINK_DIST_C_FILES)
 
-all: print opt
+all: print opt static
 
 opt: $(CLIBDIR) $(COBJDIR) $(CBINDIR) $(BIN_TARGETS) 
+
+static: $(NOLINK_DIST_OBJ_FILES)
+	ar rcs $(CLIBDIR)/cnoplus.a $^
 
 test: $(TESTDIR) $(TEST_BIN_FILES) #test_suite
 
