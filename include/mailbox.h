@@ -40,7 +40,6 @@ struct mailbox_osd; typedef struct mailbox_osd mailbox_osa;
 #include "counter.h"
 #include "object.h"
 #include "exception.h"
-#include "message.h"
 
 /*
   ==============================================================
@@ -78,7 +77,7 @@ struct mailbox_osd {
   int length;
   // methods 
   void * (* get)(mailbox_osa * Self);
-  void * (* put)(mailbox_osa * Self, message_osa * Message);
+  void * (* put)(mailbox_osa * Self, void * Message);
 };// mailbox_osa;
 
 extern const void * mailbox_o;

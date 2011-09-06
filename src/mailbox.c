@@ -45,7 +45,7 @@ If not, see http://www.opensource.org/licenses/
   ==============================================================
 */
 //static int loop(mailbox_osa * Self);
-static void * mailbox_put(mailbox_osa * Self, message_osa * Message);
+static void * mailbox_put(mailbox_osa * Self, void * Message);
 static void * mailbox_get(mailbox_osa * Self);
 
 static void * mailbox_ctor(void * Self_v, void * Properties, va_list * Args) {
@@ -78,7 +78,7 @@ static void * mailbox_dtor(void * Self_v) {
 OBJECT(mailbox, NULL, NULL, NULL);
 const void * mailbox_o = &mailbox_od;
 
-static void * mailbox_put(mailbox_osa * Self, message_osa * Message) {
+static void * mailbox_put(mailbox_osa * Self, void * Message) {
 //  struct mailbox_osd * Self = Self_v;
   return Self->queue->push_r(Self->queue, Message);  
 }
